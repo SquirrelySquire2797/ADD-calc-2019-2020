@@ -1,0 +1,102 @@
+#findwhereRisextractingfrom
+getwd()
+
+#install ADD package 
+install.packages('lmerTest')
+library(lmerTest)
+install.packages('emmeans')
+library(emmeans)
+if(!require(mosaic)){install.packages("mosaic")}
+library(mosaic)
+if(!require(tidyverse)){install.packages("tidyverse")}
+library(tidyverse)
+if(!require(broom)){install.packages("broom")}
+library(broom)
+install.packages('devtools')
+library(devtools)
+if(!require(drc)){install.packages("drc")}
+library(drc)
+if(!require(nlme)){install.packages("nlme")}
+library(nlme)
+if(!require(rcompanion)){install.packages("rcompanion")}
+if(!require(FSA)){install.packages("FSA")}
+if(!require(rcompanion)){install.packages("rcompanion")}
+if(!require(FSA)){install.packages("FSA")}
+if(!require(psych)){install.packages("psych")}
+library(rcompanion)
+library(FSA)
+library(psych)
+
+#if error in read, double checj WD
+setwd("C:/Users/16512/Documents")
+getwd()
+
+#readtempdatacsv,T meanslinesgrabbingaretrue
+x=read.csv('2019 TEMP DATA.csv', header = T)
+#returntopmostportionofdata
+head(x)
+#database is searched by R when evaluating a variable, so objects in database can be accessed by simply giving their names 
+attach(x)
+#AddsecondADDpackagewithbasetemps
+if(!require(pollen)){install.packages("pollen")}
+library(pollen)
+GDDMINEIGHT=gdd(tmax=MAX, tmin=MIN, tbase=-8,tbase_max=100)
+GDDMINSEVEN GDDZERO=gdd(tmax=MAX, tmin=MIN, tbase=-7,tbase_max=100)
+GDDMINSIX=gdd(tmax=MAX, tmin=MIN, tbase=-6,tbase_max=100)
+GDDMINFIVE=gdd(tmax=MAX, tmin=MIN, tbase=-5,tbase_max=100)
+GDDMINFOUR=gdd(tmax=MAX, tmin=MIN, tbase=-4,tbase_max=100)
+GDDMINTHREE=gdd(tmax=MAX, tmin=MIN, tbase=-3,tbase_max=100)
+GDDMINTWO=gdd(tmax=MAX, tmin=MIN, tbase=-2,tbase_max=100)
+GDDMINONE=gdd(tmax=MAX, tmin=MIN, tbase=-1,tbase_max=100)
+GDDZERO=gdd(tmax=MAX, tmin=MIN, tbase=0,tbase_max=100)
+GDDONE=gdd(tmax=MAX, tmin=MIN, tbase=1,tbase_max=100)
+GDDTWO=gdd(tmax=MAX, tmin=MIN, tbase=2,tbase_max=100)
+GDDTHREE=gdd(tmax=MAX, tmin=MIN, tbase=3,tbase_max=100)
+GDDFOUR=gdd(tmax=MAX, tmin=MIN, tbase=4,tbase_max=100)
+GDDFIVE=gdd(tmax=MAX, tmin=MIN, tbase=5,tbase_max=100)
+GDDSIX=gdd(tmax=MAX, tmin=MIN, tbase=6,tbase_max=100)
+GDDSEVEN=gdd(tmax=MAX, tmin=MIN, tbase=7,tbase_max=100)
+GDDZERO
+
+#STARTGOINGUPBYFIVE
+GDDMINEIGHT>6007
+GDDMINSEVEN>6007
+GDDMINSIX>6007
+GDDMINFIVE>6007
+GDDMINFOUR>6007
+GDDMINTHREE>6007
+GDDMINTWO>6007
+GDDMINONE>6007
+GDDZERO>6007
+GDDONE>6007
+GDDTWO>6007
+GDDTHREE>6007
+
+#NEXTFIVE 
+
+GDDMINEIGHT>6012
+GDDMINSEVEN>6012
+GDDMINSIX>6012
+GDDMINFIVE>6012
+GDDMINFOUR>6012
+GDDMINTHREE>6012
+GDDMINTWO>6012
+GDDMINONE>6012
+GDDZERO>6012
+GDDONE>6012
+GDDTWO>6012
+GDDTHREE>6012
+
+#NEXTFIVE 
+GDDMINEIGHT>6012
+GDDMINSEVEN>6012
+GDDMINSIX>6012
+GDDMINFIVE>6012
+GDDMINFOUR>6012
+GDDMINTHREE>6012
+GDDMINTWO>6012
+GDDMINONE>6012
+GDDZERO>6012
+GDDONE>6012
+GDDTWO>6012
+GDDTHREE>6012
