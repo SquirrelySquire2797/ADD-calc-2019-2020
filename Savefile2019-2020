@@ -56,47 +56,62 @@ GDDFOUR=gdd(tmax=MAX, tmin=MIN, tbase=4,tbase_max=100)
 GDDFIVE=gdd(tmax=MAX, tmin=MIN, tbase=5,tbase_max=100)
 GDDSIX=gdd(tmax=MAX, tmin=MIN, tbase=6,tbase_max=100)
 GDDSEVEN=gdd(tmax=MAX, tmin=MIN, tbase=7,tbase_max=100)
+
+#findbaseof 0 value 
+
 GDDZERO
 
-#STARTGOINGUPBYFIVE
-GDDMINEIGHT>6007
-GDDMINSEVEN>6007
-GDDMINSIX>6007
-GDDMINFIVE>6007
-GDDMINFOUR>6007
-GDDMINTHREE>6007
-GDDMINTWO>6007
-GDDMINONE>6007
-GDDZERO>6007
-GDDONE>6007
-GDDTWO>6007
-GDDTHREE>6007
+#fromlow100tohigh100, create a inc by 5 sequence
 
-#NEXTFIVE 
+ADDincfive <- seq(from = 5977, to = 6177, by = 5)
 
-GDDMINEIGHT>6012
-GDDMINSEVEN>6012
-GDDMINSIX>6012
-GDDMINFIVE>6012
-GDDMINFOUR>6012
-GDDMINTHREE>6012
-GDDMINTWO>6012
-GDDMINONE>6012
-GDDZERO>6012
-GDDONE>6012
-GDDTWO>6012
-GDDTHREE>6012
+###functionstart###
 
-#NEXTFIVE 
-GDDMINEIGHT>6012
-GDDMINSEVEN>6012
-GDDMINSIX>6012
-GDDMINFIVE>6012
-GDDMINFOUR>6012
-GDDMINTHREE>6012
-GDDMINTWO>6012
-GDDMINONE>6012
-GDDZERO>6012
-GDDONE>6012
-GDDTWO>6012
-GDDTHREE>6012
+   #setupfilelocation
+
+  folder <- "2019Tempdata/"
+  
+#createfunction
+  
+ADDlogtest <- function(var, name){
+  
+  #definevariableforfunction
+  
+  TS1 <- var
+  
+   ##41 different values of ADD from base 6077
+  
+     for(i in 1:41){
+       thresholdresult <- TS1 > ADDincfive[i]
+       
+       #changetocharactertofind"true"
+       
+           threshchar <- as.character(thresholdresult)
+           
+           #change sequencenametoTSEQfor "if then" 
+           
+           TSEQ <- ADDincfive[i]
+           if (TRUE %in% threshchar){
+               TSEQ <- as.character(TSEQ)
+               fileA<-paste(folder, name, TSEQ, ".csv", sep="")
+               write.csv(thresholdresult, fileA)
+            }
+  }
+}
+       #startfunctioncalc 
+        
+{ADDlogtest(GDDMINEIGHT,"negeight")
+ADDlogtest(GDDMINSEVEN,"negseven")
+ADDlogtest(GDDMINSIX,"negsix")
+ADDlogtest(GDDMINFIVE,"negfive")
+ADDlogtest(GDDMINFOUR,"negfour")
+ADDlogtest(GDDMINTHREE,"negthree")
+ADDlogtest(GDDMINTWO,"negtwo")
+ADDlogtest(GDDMINONE,"negoone")
+ADDlogtest(GDDZERO,"zero")
+ADDlogtest(GDDONE,"one")
+ADDlogtest(GDDTWO,"two")
+ADDlogtest(GDDTHREE,"three")
+ADDlogtest(GDDFOUR,"four")}
+
+
