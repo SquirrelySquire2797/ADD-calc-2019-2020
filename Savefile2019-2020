@@ -1,3 +1,5 @@
+
+
 #findwhereRisextractingfrom
 getwd()
 
@@ -28,11 +30,11 @@ library(FSA)
 library(psych)
 
 #if error in read, double checj WD
-setwd("C:/Users/16512/Documents")
+setwd("C:/Users/16512/Desktop/ADD Calc")
 getwd()
 
 #readtempdatacsv,T meanslinesgrabbingaretrue
-x=read.csv('2019 TEMP DATA.csv', header = T)
+x=read.csv('2019Tempdata/2019 TEMP DATA.csv', header = T)
 #returntopmostportionofdata
 head(x)
 #database is searched by R when evaluating a variable, so objects in database can be accessed by simply giving their names 
@@ -40,8 +42,10 @@ attach(x)
 #AddsecondADDpackagewithbasetemps
 if(!require(pollen)){install.packages("pollen")}
 library(pollen)
+
+#MINTEMPOF-7.7FORYEAR
 GDDMINEIGHT=gdd(tmax=MAX, tmin=MIN, tbase=-8,tbase_max=100)
-GDDMINSEVEN GDDZERO=gdd(tmax=MAX, tmin=MIN, tbase=-7,tbase_max=100)
+GDDMINSEVEN=gdd(tmax=MAX, tmin=MIN, tbase=-7,tbase_max=100)
 GDDMINSIX=gdd(tmax=MAX, tmin=MIN, tbase=-6,tbase_max=100)
 GDDMINFIVE=gdd(tmax=MAX, tmin=MIN, tbase=-5,tbase_max=100)
 GDDMINFOUR=gdd(tmax=MAX, tmin=MIN, tbase=-4,tbase_max=100)
@@ -57,6 +61,7 @@ GDDFIVE=gdd(tmax=MAX, tmin=MIN, tbase=5,tbase_max=100)
 GDDSIX=gdd(tmax=MAX, tmin=MIN, tbase=6,tbase_max=100)
 GDDSEVEN=gdd(tmax=MAX, tmin=MIN, tbase=7,tbase_max=100)
 
+
 #findbaseof 0 value 
 
 GDDZERO
@@ -67,38 +72,41 @@ ADDincfive <- seq(from = 5977, to = 6177, by = 5)
 
 ###functionstart###
 
-   #setupfilelocation
+#setupfilelocation
 
-  folder <- "2019Tempdata/"
-  
+folder <- "2019Tempdata/"
+
 #createfunction
-  
+
 ADDlogtest <- function(var, name){
   
   #definevariableforfunction
-  
   TS1 <- var
+
   
-   ##41 different values of ADD from base 6077
+  ##41 different values of ADD from base 6077
   
-     for(i in 1:41){
-       thresholdresult <- TS1 > ADDincfive[i]
-       
-       #changetocharactertofind"true"
-       
-           threshchar <- as.character(thresholdresult)
-           
-           #change sequencenametoTSEQfor "if then" 
-           
-           TSEQ <- ADDincfive[i]
-           if (TRUE %in% threshchar){
-               TSEQ <- as.character(TSEQ)
-               fileA<-paste(folder, name, TSEQ, ".csv", sep="")
-               write.csv(thresholdresult, fileA)
-            }
+  for(i in 1:41){
+    thresholdresult <- TS1 > ADDincfive[i]
+    
+    #changetocharactertofind"true"
+    
+    threshchar <- as.character(thresholdresult)
+    
+    #change sequencenametoTSEQfor 
+    
+    TSEQ <- ADDincfive[i]
+    if (TRUE %in% threshchar){
+      TSEQ <- as.character(TSEQ)
+      fileA<-paste(folder, name, TSEQ, ".csv", sep="")
+      write.csv(thresholdresult, fileA)
+    }
   }
 }
-       #startfunctioncalc(lettersfororg)
+#startfunctioncalc 
+
+
+
 {ADDlogtest(GDDMINEIGHT,"Anegeight")
   ADDlogtest(GDDMINSEVEN,"Bnegseven")
   ADDlogtest(GDDMINSIX,"Cnegsix")
@@ -112,5 +120,4 @@ ADDlogtest <- function(var, name){
   ADDlogtest(GDDTWO,"Ktwo")
   ADDlogtest(GDDTHREE,"Lthree")
   ADDlogtest(GDDFOUR,"Mfour")}
-
 
