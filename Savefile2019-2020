@@ -98,20 +98,19 @@ ADDlogtest <- function(var, name){
             }
   }
 }
-       #startfunctioncalc 
-        
-{ADDlogtest(GDDMINEIGHT,"negeight")
-ADDlogtest(GDDMINSEVEN,"negseven")
-ADDlogtest(GDDMINSIX,"negsix")
-ADDlogtest(GDDMINFIVE,"negfive")
-ADDlogtest(GDDMINFOUR,"negfour")
-ADDlogtest(GDDMINTHREE,"negthree")
-ADDlogtest(GDDMINTWO,"negtwo")
-ADDlogtest(GDDMINONE,"negoone")
-ADDlogtest(GDDZERO,"zero")
-ADDlogtest(GDDONE,"one")
-ADDlogtest(GDDTWO,"two")
-ADDlogtest(GDDTHREE,"three")
-ADDlogtest(GDDFOUR,"four")}
+       #startfunctioncalc(lettersfororg)
+{ADDlogtest(GDDMINEIGHT,"Anegeight")
+  ADDlogtest(GDDMINSEVEN,"Bnegseven")
+  ADDlogtest(GDDMINSIX,"Cnegsix")
+  ADDlogtest(GDDMINFIVE,"Dnegfive")
+  ADDlogtest(GDDMINFOUR,"Enegfour")
+  ADDlogtest(GDDMINTHREE,"Fnegthree")
+  ADDlogtest(GDDMINTWO,"Gnegtwo")
+  ADDlogtest(GDDMINONE,"Hnegoone")
+  ADDlogtest(GDDZERO,"Izero")
+  ADDlogtest(GDDONE,"Jone")
+  ADDlogtest(GDDTWO,"Ktwo")
+  ADDlogtest(GDDTHREE,"Lthree")
+  ADDlogtest(GDDFOUR,"Mfour")}
 
 
