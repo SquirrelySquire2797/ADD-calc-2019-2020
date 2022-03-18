@@ -120,4 +120,18 @@ ADDlogtest <- function(var, name){
   ADDlogtest(GDDTWO,"Ktwo")
   ADDlogtest(GDDTHREE,"Lthree")
   ADDlogtest(GDDFOUR,"Mfour")}
+  
+  ##startlinearregression 
+
+##make vector for specific calender days 
+ADDinclin <- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
+
+###makeemptyvector
+Calcum2019result <- c()
+
+##return ADD values of calender 
+for(i in 1:10){
+  a <- ADDlin[i]
+  Calcum2019result <- print(gddzero[a,])
+}
 
