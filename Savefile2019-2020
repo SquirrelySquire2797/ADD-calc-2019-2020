@@ -160,3 +160,19 @@ nagelkerke(LOGADD)}
 ##look at nagelkerke and p value 
 
 ##create matrix for new threshold 
+
+
+gddzero3 <-Matrix(GDDMINTWO , nrow = 366, ncol= 1)
+
+
+##make vector for specific calender days 
+ADDlin3<- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
+
+###makeemptyvector
+Calcum2019resultNEW<- c()
+
+##return ADD values of calender 
+for(i in 1:10){
+  L3 <- ADDlin3[i]
+  Calcum2019resultNEW <- print( gddzero3 [L3,])}
+
