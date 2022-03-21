@@ -121,10 +121,11 @@ ADDlogtest <- function(var, name){
   ADDlogtest(GDDTHREE,"Lthree")
   ADDlogtest(GDDFOUR,"Mfour")}
   
-  ##startlinearregression 
+##startlinearregression 
+gddzero1 <- Matrix(GDDZERO, nrow = 366, ncol= 1)
 
 ##make vector for specific calender days 
-ADDinclin <- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
+ADDlin <- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
 
 ###makeemptyvector
 Calcum2019result <- c()
@@ -132,7 +133,30 @@ Calcum2019result <- c()
 ##return ADD values of calender 
 for(i in 1:10){
   a <- ADDlin[i]
-  Calcum2019result <- print(gddzero[a,])
+  Calcum2019result <- print(gddzero1[a,])
 }
 
+##read the cumulative ADD values for each month in the document 
+y=read.csv('2019Tempdata/DD 2019-2020.csv', header=TRUE) 
 
+##check everything is there
+View(y)
+
+##download regression packages 
+
+if(!require(rcompanion)){install.packages("rcompanion")}
+library(rcompanion)
+if(!require(car)){install.packages("car")}
+library(car)
+
+attach(y)
+
+
+ ##begin test
+  
+{LOGADD=glm(CODE~ADD, family=binomial)
+nagelkerke(LOGADD)}
+
+##look at nagelkerke and p value 
+
+##create matrix for new threshold 
