@@ -64,11 +64,12 @@ GDDSEVEN=gdd(tmax=MAX, tmin=MIN, tbase=7,tbase_max=100)
 
 #findbaseof 0 value 
 
+
 GDDZERO
 
 #fromlow100tohigh100, create a inc by 5 sequence
 
-ADDincfive <- seq(from = 5977, to = 6177, by = 5)
+ADDincfive <- seq(from = 6311, to = 6511, by = 5)
 
 ###functionstart###
 
@@ -84,7 +85,7 @@ ADDlogtest <- function(var, name){
   TS1 <- var
 
   
-  ##41 different values of ADD from base 6077
+  ##41 different values of ADD from base 6411
   
   for(i in 1:41){
     thresholdresult <- TS1 > ADDincfive[i]
@@ -120,18 +121,18 @@ ADDlogtest <- function(var, name){
   ADDlogtest(GDDTWO,"Ktwo")
   ADDlogtest(GDDTHREE,"Lthree")
   ADDlogtest(GDDFOUR,"Mfour")}
-  
+
 ##startlinearregression 
-gddzero1 <- Matrix(GDDZERO, nrow = 366, ncol= 1)
+gddzero1 <-Matrix(GDDZERO, nrow = 365, ncol= 1)
 
 ##make vector for specific calender days 
-ADDlin <- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
+ADDlin <- c(121, 151, 182, 213, 243, 274, 304, 335, 365)
 
 ###makeemptyvector
 Calcum2019result <- c()
 
 ##return ADD values of calender 
-for(i in 1:10){
+for(i in 1:9){
   a <- ADDlin[i]
   Calcum2019result <- print(gddzero1[a,])
 }
@@ -162,17 +163,53 @@ nagelkerke(LOGADD)}
 ##create matrix for new threshold 
 
 
-gddzero3 <-Matrix(GDDMINTWO , nrow = 366, ncol= 1)
+
+gddzero3 <-Matrix(GDDMINTHREE , nrow = 365, ncol= 1)
 
 
 ##make vector for specific calender days 
-ADDlin3<- c(92, 122, 153, 184, 214, 245, 275, 306, 337, 366)
+ADDlin3<- c(121, 151, 182, 213, 243, 274, 304, 335, 365)
 
 ###makeemptyvector
 Calcum2019resultNEW<- c()
 
 ##return ADD values of calender 
-for(i in 1:10){
+for(i in 1:9){
   L3 <- ADDlin3[i]
   Calcum2019resultNEW <- print( gddzero3 [L3,])}
 
+
+
+##createfigures
+z1=read.csv('2019Tempdata/DD Reg 2019.csv', header=TRUE)
+
+
+head(z1)
+attach(z1)
+
+LOGADD$coef
+ADDb0=LOGADD$coef[1]
+ADDx1=LOGADD$coef[2]
+ADDrange=seq(from=0, to=9000, by=250)
+ADDrange
+a_logit=ADDb0+ADDx1*ADDrange
+a_logit
+a_prob=exp(a_logit)/(1+exp(a_logit))
+a_prob
+plot(ADD, PROP, xlab="Accumulated Degree Days", ylab="Peak Biomass Proportion", xlim=c(0,9000), ylim = c(0,1))
+
+
+lines(ADDrange,a_prob)
+
+#homlin. good fit 
+
+
+attach(y)
+if(!require(modEvA)){install.packages("modEvA")}
+library(modEvA)
+HLfit(LOGADD, bin.method="prob.bins")
+
+##spearman and tau tests
+
+cor.test(CODE, ADD, method="spearman")
+cor.test(CODE, ADD, method="kendall")
