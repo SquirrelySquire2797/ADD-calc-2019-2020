@@ -29,7 +29,7 @@ library(rcompanion)
 library(FSA)
 library(psych)
 
-#if error in read, double checj WD
+#if error in read, double check WD
 setwd("C:/Users/16512/Desktop/ADD Calc")
 getwd()
 
